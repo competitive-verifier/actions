@@ -20,7 +20,7 @@ jobs:
       COMPETITIVE_VERIFY_FILES_PATH: download-problems/tests/verify_files.json
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up competitive-verifier
         uses: ./setup
