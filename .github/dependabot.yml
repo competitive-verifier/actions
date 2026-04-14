@@ -1,59 +1,24 @@
 version: 2
 updates:
   - package-ecosystem: github-actions
-    directory: "/"
+    directories:
+      - "/"
+      - check
+      - cs-resolve
+      - docs
+      - download-problems
+      - download-verify-artifact
+      - merge-result
+      - merge-verify-files
+      - oj-resolve
+      - parse-doxygen
+      - setup
+      - testing
+      - upload-verify-artifact
+      - verify
     schedule:
       interval: weekly
-
-  - package-ecosystem: github-actions
-    directory: check
-    schedule:
-      interval: weekly
-  - package-ecosystem: github-actions
-    directory: cs-resolve
-    schedule:
-      interval: weekly
-  - package-ecosystem: github-actions
-    directory: docs
-    schedule:
-      interval: weekly
-  - package-ecosystem: github-actions
-    directory: download-problems
-    schedule:
-      interval: weekly
-  - package-ecosystem: github-actions
-    directory: download-verify-artifact
-    schedule:
-      interval: weekly
-  - package-ecosystem: github-actions
-    directory: merge-result
-    schedule:
-      interval: weekly
-  - package-ecosystem: github-actions
-    directory: merge-verify-files
-    schedule:
-      interval: weekly
-  - package-ecosystem: github-actions
-    directory: oj-resolve
-    schedule:
-      interval: weekly
-  - package-ecosystem: github-actions
-    directory: parse-doxygen
-    schedule:
-      interval: weekly
-  - package-ecosystem: github-actions
-    directory: setup
-    schedule:
-      interval: weekly
-  - package-ecosystem: github-actions
-    directory: testing
-    schedule:
-      interval: weekly
-  - package-ecosystem: github-actions
-    directory: upload-verify-artifact
-    schedule:
-      interval: weekly
-  - package-ecosystem: github-actions
-    directory: verify
-    schedule:
-      interval: weekly
+    groups:
+      actions:
+        patterns:
+          - "*"
