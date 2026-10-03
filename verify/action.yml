@@ -41,6 +41,10 @@ inputs:
     description: "Argument of verify --split-index."
     required: false
     default: ""
+  hash:
+    description: If true, detect whether a file has changed since the prev-result by hash. Argument of verify --change-detection hash.
+    required: false
+    default: "false"
   check:
     description: "If check is true and `verify` fails, the action fails too."
     required: false
@@ -73,6 +77,7 @@ runs:
           ${{ format(inputs.tle         && '--tle "{0}"',         inputs.tle) }} \
           ${{ format(inputs.mle         && '--mle "{0}"',         inputs.mle) }} \
           ${{ format(inputs.prev-result && '--prev-result "{0}"', inputs.prev-result) }} \
+          ${{ fromJson(inputs.hash) && '--change-detection hash' || '' }} \
           ${{ format(inputs.split-size  && '--split "{0}"',       inputs.split-size) }} \
           ${{ format(inputs.split-index && '--split-index "{0}"', inputs.split-index) }} \
           ${{ format(inputs.destination && '--output "{0}"',    inputs.destination) }} ; then

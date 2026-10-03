@@ -33,7 +33,6 @@ jobs:
           tle: 1
           destination: ${{runner.temp}}/result.json
           verbose: true
-
       - name: Test success
         run: |
           [ $(wc -c < "$GITHUB_STEP_SUMMARY") = 0 ]
@@ -157,3 +156,17 @@ jobs:
           [ "${{ steps.verify-success-check-sub.outputs.is-success }}"  = "true" ]
           [ "${{ steps.verify-success-check-sub.outcome }}" = "success" ]
           [ $(jq '.files|length' "$RUNNER_TEMP/sub-result.json") = 4 ]
+
+      - name: Verify success hash
+        id: verify-success-hash
+        uses: ./verify
+        with:
+          verify-files: verify/tests/success.json
+          destination: ${{runner.temp}}/result.json
+          hash: true
+      - name: Test hash
+        run: |
+          [ $(wc -c < "$GITHUB_STEP_SUMMARY") = 0 ]
+          rm $GITHUB_STEP_SUMMARY
+          [ "${{ steps.verify-success-hash.outputs.is-success }}"  = "true" ]
+          [ $(jq '.files|length' "$RUNNER_TEMP/result.json") = 4 ]
